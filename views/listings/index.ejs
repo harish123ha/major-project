@@ -1,0 +1,25 @@
+<%- layout("layouts/boilerplate")%>
+
+<body>
+  <marquee><h2>WELCOME TO THE WEBSITE OF HARISH KUMAR UPADHYAY</h2></marquee>
+
+  <div class="row row-cols-lg-4 row-cols-md-3 row-cols-sm-1">
+    <%for(data of allData){%>
+    <a class="ancor" href="http://localhost:8080/listings/<%=data._id%>/show">
+      <div class="card col listing-card">
+        <img
+          src="<%=data.image%>"
+          class="card-img-top"
+          alt="..."
+          style="height: 16rem"
+        />
+        <div class="card-img-overlay"></div>
+        <div class="card-body">
+          <p class="card-text title"><%=data.title%></p>
+          <p class="card-text price">&#8377;<%= data.price %>/night</p>
+        </div>
+      </div>
+    </a>
+    <%}%>
+  </div>
+</body>

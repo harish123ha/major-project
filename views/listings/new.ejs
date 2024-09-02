@@ -1,0 +1,89 @@
+<%- layout("layouts/boilerplate")%>
+<form method="POST" action="/listings" class="needs-validation" novalidate>
+  <div class="row">
+    <div class="col-8 offset-2">
+      <div class="mb-3">
+        <label for="title" class="form-label zero">Title</label>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Add a catchy title"
+          name="listing[title]"
+          required
+        />
+        <div class="invalid-feedback">Please enter title.</div>
+        <div class="valid-feedback">looks good</div>
+      </div>
+
+      <div class="mb-3">
+        <label for="description" class="form-label zero">Description</label>
+        <textarea
+          class="form-control"
+          name="listing[description]"
+          placeholder="enter description"
+          rows="3"
+          required
+        ></textarea>
+        <div class="invalid-feedback">Please enter description</div>
+        <div class="valid-feedback">looks good</div>
+      </div>
+
+      <div class="mb-3">
+        <label for="price" class="form-label zero">Price</label>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="1200"
+          name="listing[price]"
+          required
+        />
+        <div class="invalid-feedback">Please enter valid price</div>
+        <div class="valid-feedback">looks good</div>
+      </div>
+
+      <div class="mb-3">
+        <label for="image" class="form-label zero">Image</label>
+        <input
+          type=""
+          class="form-control"
+          placeholder="enter image url"
+          name="listing[image]"
+        />
+      </div>
+      <p class="text-danger">copy image url from internet and paste it here</p>
+
+      <div class="row">
+        <div class="col-md-8">
+          <div class="mb-3">
+            <label for="location" class="form-label zero">Location</label>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Rajasthan,Jaipur,Punjab"
+              name="listing[location]"
+              required
+            />
+            <div class="invalid-feedback">Please provide a valid location</div>
+            <div class="valid-feedback">looks good</div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="mb-3">
+            <label for="country" class="form-label zero">Country</label>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="India"
+              name="listing[country]"
+              required
+            />
+            <div class="invalid-feedback">Please provide a valid country</div>
+            <div class="valid-feedback">looks good</div>
+          </div>
+        </div>
+      </div>
+
+      <button class="btn btn-danger">Add</button>
+    </div>
+  </div>
+</form>

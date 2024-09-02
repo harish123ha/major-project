@@ -1,0 +1,108 @@
+<%- layout("layouts/boilerplate")%>
+<div class="row">
+  <div class="col-8 offset-2">
+    <h3 class="ms-2">  Created By <%=listing.owner.username%></h3>
+    <div class="card listing-card" style="width: 45rem">
+      <img
+        src="<%=listing.image%>"
+        class="card-img-top"
+        alt="..."
+        style="height: 20rem"
+      />
+      <div class="card-body show">
+        
+        <p class="card-text"><b><%=listing.title%></b></p>
+        <p class="card-text"><%=listing.description%></p>
+        <p class="card-text">&#8377;<%=listing.price%></p>
+        <p class="card-text"><%=listing.location%></p>
+        <p class="card-text"><%=listing.country%></p>
+      </div>
+      <%if(currentUser && currentUser._id.equals(listing.owner._id)){%>
+      
+        <div class="row mt-3">
+          <div class="col col-lg-3">
+            <a href="http://localhost:8080/listings/<%=listing._id%>/edit"
+              ><button class="btn btn-danger px-5">Edit</button></a
+            >
+          </div>
+          <div class="col col-lg-4">
+            <form
+              method="post"
+              action="/listings/<%=listing._id%>?_method=DELETE"
+            >
+              <button class="btn btn-dark px-3">Delete</button>
+            </form>
+          </div>
+        </div>
+      <%}%>
+      <hr>
+    </div>
+    
+    
+
+    <!-- REVIEWS ARE STARTING HERE -->
+  <%if(currentUser){%>
+    <div>
+    <form
+      method="post"
+      action="/listings/<%=listing._id%>/reviews"
+      class="needs-validation"
+      novalidate
+    >
+      <b><label for="rating" class="form-label">RATINGS</label></b>
+      <input
+        name="review[rating]"
+        type="range"
+        min="1"
+        max="5"
+        class="form-range"
+        id="customRange1"
+      />
+      <b><label for="comment" class="form-label mb-2">Comments</label></b>
+      <textarea
+        name="review[comment]"
+        type="text"
+        class="form-control"
+        rows="5"
+        required
+      ></textarea>
+      <div class="invalid-feedback mb-4">please enter comment</div>
+      <button class="mb-5 mt-4 btn btn-outline-dark" type="submit">
+        submit
+      </button>
+    </form>
+  </div>
+<%}%>
+    
+
+    <!-- REVIEWS ARE CLOSEING HERE -->
+
+    <!-- SHOWING REVIEWS ARE STARTING HEREEE -->
+
+    
+      <h4 class="mt-4">REVIEWS</h4>
+
+      <div class="row">
+        <%for(review of listing.reviews){%>
+        <div class="col-md-5 card ms-3 mb-3">
+          <div class="card-body">
+            <h5 class="card-title mb-2">@<%=review.author.username%></h5>
+            <h6 class="card-text"><%=review.comment%></h6>
+            <p class="card-text"><%=review.rating%> stars</p>
+            <form
+              method="post"
+              action="/listings/<%=listing._id%>/reviews/<%=review._id%>?_method=DELETE"
+            >
+              <button class="btn my-3 btn-outline-dark" type="submit">
+                DELETE
+              </button>
+            </form>
+          </div>
+        </div>
+        <%}%>
+      </div>
+    </div>
+
+    <!-- SHOWING REVIEWS ARE CLOSING HEREEE -->
+  </div>
+</div>
