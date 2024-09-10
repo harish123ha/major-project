@@ -5,7 +5,10 @@
 
   <div class="row row-cols-lg-4 row-cols-md-3 row-cols-sm-1">
     <%for(data of allData){%>
-    <a class="ancor" href="http://localhost:8080/listings/<%=data._id%>/show">
+    <a
+      class="ancor"
+      href="https://data-1-nxhk.onrender.com/listings/<%=data._id%>/show"
+    >
       <div class="card col listing-card">
         <img
           src="<%=data.image%>"
