@@ -3,12 +3,9 @@
 <body>
   <marquee><h2>WELCOME TO THE WEBSITE OF HARISH KUMAR UPADHYAY</h2></marquee>
 
-  <div class="row row-cols-lg-4 row-cols-md-3 row-cols-sm-1">
+  <div class="row row-cols-lg-4 row-cols-md-3 row-cols-sm-1 pe-2">
     <%for(data of allData){%>
-    <a
-      class="ancor"
-      href="https://major-project-0gw9.onrender.com/listings/<%=data._id%>/show"
-    >
+    <a class="ancor" href="/listings/<%=data._id%>/show">
       <div class="card col listing-card">
         <img
           src="<%=data.image%>"
