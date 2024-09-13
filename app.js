@@ -32,9 +32,9 @@ app.use(methodOverride("_method"));
 
 const dbUrl = process.env.ATLASDB_URL;
 // console.log(dbUrl);
-const mongoUrl = "mongodb://127.0.0.1:27017/wanderlust";
+// const mongoUrl = "mongodb://127.0.0.1:27017/wanderlust";
 async function main() {
-  await mongoose.connect(mongoUrl);
+  await mongoose.connect(dbUrl);
 }
 
 main()
