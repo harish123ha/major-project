@@ -1,8 +1,16 @@
+<style>
+  .flash-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+</style>
+
 <!-- FOR SUCCESSS -->
 <%if(success){%> <%if(success.length){%>
-<div class="row mt-2">
-  <div class="col-6 offset-3">
-    <h5 class="alert alert-success text-center" role="alert">
+<div class="flash-center mt-2">
+  <div class="text-center">
+    <h5 class="alert alert-danger text-center" role="alert">
       <%=success%><strong></strong>
     </h5>
   </div>
@@ -11,8 +19,8 @@
 
 <!-- FOR ERROR -->
 <%if(error){%> <%if(error.length){%>
-<div class="row mt-2">
-  <div class="col-6 offset-3">
+<div class="flash-center mt-2">
+  <div class="text-center">
     <h5 class="alert alert-danger text-center" role="alert">
       <%=error%><strong></strong>
     </h5>

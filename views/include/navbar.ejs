@@ -1,8 +1,78 @@
+<style>
+  .search {
+  
+    display: flex !important;
+    gap:.60rem
+    
+  }
+
+  .search-style-input{
+    padding: .28rem .50rem;
+  }
+
+
+  .search-button{
+    padding:.18rem 1rem;
+  }
+
+  #none{
+    display: none;
+  }
+
+  @media(max-width:992px){
+    #none{
+      display: block;
+    }
+}
+
+#block{
+  display: block;
+}
+
+@media(max-width:992px){
+    #block{
+      display: none;
+    }
+}
+
+@media(max-width:437px){
+  .search-style-input{
+    padding: .15rem .15rem;
+    width: 9rem;
+  }
+
+  .search-button{
+    padding: .10rem .50rem;
+        margin-bottom: 4px;
+  }
+}
+
+
+
+
+
+</style>
+
 <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom">
   <div class="container-fluid">
     <a class="navbar-brand" href="/listings"
       ><i class="fa-regular fa-compass"></i
     ></a>
+
+    <!-- // SEARCH BAR WILL SHOW ON WIDTH 991PX OKAY -->
+    <div class="navbar-brand search">
+        
+      <div id="none">
+        <form  action="/listings/search" class="form-inline" >
+         <input name="search" class="form-control mr-sm-2 search-style-input" type="search" placeholder="Search" aria-label="Search">
+      </div>
+      <div id="none">
+        <button class="search-button search-but btn btn-outline-success" type="submit">Search</button>
+      </div>
+    </form>
+  </div>
+    
+    <!-- //CLOSE SEARCH BAR WILL SHOW ON WIDTH 991PX OKAY -->
 
     <button
       class="navbar-toggler"
@@ -17,6 +87,17 @@
         <a class="nav-link" href="/listings">Home</a>
         <a class="nav-link" href="/listings">All Listings</a>
         <a class="nav-link" href="/listings/new">Add new Listing</a>
+      </div>
+      <div class="navbar-brand navbar-nav search ms-auto">
+        
+          <div id="block">
+            <form  action="/listings/search" class="form-inline my-2 my-lg-0" >
+             <input name="search" class="form-control mr-sm-2 search-style-input" type="search" placeholder="Search" aria-label="Search">
+          </div>
+          <div id="block">
+            <button class="search-button search-but btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          </div>
+        </form>
       </div>
       <div class="navbar-nav ms-auto">
         <%if(!currentUser){%>
