@@ -58,3 +58,22 @@ module.exports.destroyListing = async (req, res) => {
   req.flash("success", "Listing Deleted successful");
   res.redirect("/listings");
 };
+
+module.exports.searchBar = async (req, res) => {
+  let { search } = req.query;
+
+  let data = await Listing.find({
+    $or: [
+      { country: { $regex: search, $options: "i" } },
+      { location: { $regex: search, $options: "i" } },
+      { description: { $regex: search, $options: "i" } },
+    ],
+  });
+  if (data == "") {
+    req.flash("error", "The Desired Search data not found");
+    return res.redirect("/listings");
+  }
+
+  req.flash("success", "data found");
+  res.render("listings/index.ejs", { allData: data });
+};

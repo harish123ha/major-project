@@ -52,31 +52,27 @@ router.delete(
   wrapAsync(listingController.destroyListing)
 );
 
-router.get("/search", async (req, res) => {
-  let { search } = req.query;
-  console.log("srsdfad===", search);
+//SEARCH ROUTE
 
-  let data = await Listing.find({
-    $or: [
-      { country: { $regex: search, $options: "i" } },
-      { location: { $regex: search, $options: "i" } },
-      { description: { $regex: search, $options: "i" } },
-    ],
-  });
-  if (data == "") {
-    req.flash("error", "The Desired Search data not found");
-    return res.redirect("/listings");
-  }
-  console.log(data);
-  req.flash("success", "data found");
-  res.render("listings/index.ejs", { allData: data });
+// router.get("/search", async (req, res) => {
+//   let { search } = req.query;
 
-  // if (!allData == [Array]) {
-  //   res.redirect("/listings", { allData });
-  // } else {
-  //   req.flash("error", "data not found");
-  //   res.redirect("/listings");
-  // }
-});
+//   let data = await Listing.find({
+//     $or: [
+//       { country: { $regex: search, $options: "i" } },
+//       { location: { $regex: search, $options: "i" } },
+//       { description: { $regex: search, $options: "i" } },
+//     ],
+//   });
+//   if (data == "") {
+//     req.flash("error", "The Desired Search data not found");
+//     return res.redirect("/listings");
+//   }
+
+//   req.flash("success", "data found");
+//   res.render("listings/index.ejs", { allData: data });
+// });
+
+router.get("/search", wrapAsync(listingController.searchBar));
 
 module.exports = router;

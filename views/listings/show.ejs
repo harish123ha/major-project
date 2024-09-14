@@ -51,15 +51,57 @@
         class="needs-validation"
         novalidate
       >
-        <b><label for="rating" class="form-label">RATINGS</label></b>
-        <input
-          name="review[rating]"
-          type="range"
-          min="1"
-          max="5"
-          class="form-range"
-          id="customRange1"
-        />
+        <!-- gitjub rating section start here -->
+        <h3>Leave a Comment</h3>
+        <fieldset class="starability-heartbeat">
+          <legend>Rating:</legend>
+          <input
+            type="radio"
+            id="no-rate"
+            class="input-no-rate"
+            name="review[rating]"
+            value="1"
+            checked
+            aria-label="No rating."
+          />
+          <input
+            type="radio"
+            id="first-rate1"
+            name="review[rating]"
+            value="1"
+          />
+          <label for="first-rate1" title="Terrible">1 star</label>
+          <input
+            type="radio"
+            id="first-rate2"
+            name="review[rating]"
+            value="2"
+          />
+          <label for="first-rate2" title="Not good">2 stars</label>
+          <input
+            type="radio"
+            id="first-rate3"
+            name="review[rating]"
+            value="3"
+          />
+          <label for="first-rate3" title="Average">3 stars</label>
+          <input
+            type="radio"
+            id="first-rate4"
+            name="review[rating]"
+            value="4"
+          />
+          <label for="first-rate4" title="Very good">4 stars</label>
+          <input
+            type="radio"
+            id="first-rate5"
+            name="review[rating]"
+            value="5"
+          />
+          <label for="first-rate5" title="Amazing">5 stars</label>
+        </fieldset>
+        <!-- gitjub rating section close here -->
+
         <b><label for="comment" class="form-label mb-2">Comments</label></b>
         <textarea
           name="review[comment]"
@@ -79,24 +121,24 @@
     <!-- REVIEWS ARE CLOSEING HERE -->
 
     <!-- SHOWING REVIEWS ARE STARTING HEREEE -->
-
     <div class="row">
       <%for(review of listing.reviews){%>
-      <h4 class="mt-2 mb-5">REVIEWS</h4>
 
-      <div class="col-md-5 card ms-3 mb-3">
-        <div class="card-body">
-          <h5 class="card-title mb-2">@<%=review.author.username%></h5>
-          <h6 class="card-text"><%=review.comment%></h6>
-          <p class="card-text"><%=review.rating%> stars</p>
-          <form
-            method="post"
-            action="/listings/<%=listing._id%>/reviews/<%=review._id%>?_method=DELETE"
-          >
-            <button class="btn my-3 btn-outline-dark" type="submit">
-              DELETE
-            </button>
-          </form>
+      <div class="col-sm-6 mt-2">
+        <div class="card px-2 py-2">
+          <div class="card-body">
+            <h5 class="card-title mb-2">@<%=review.author.username%></h5>
+            <p class="starability-result" data-rating="<%=review.rating%>"></p>
+            <h6 class="card-text"><%=review.comment%></h6>
+            <form
+              method="post"
+              action="/listings/<%=listing._id%>/reviews/<%=review._id%>?_method=DELETE"
+            >
+              <button class="btn my-3 btn-outline-dark" type="submit">
+                DELETE
+              </button>
+            </form>
+          </div>
         </div>
       </div>
       <%}%>
