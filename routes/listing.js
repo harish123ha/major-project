@@ -6,8 +6,16 @@ const { isOwner } = require("../middleware.js");
 const { validateListing } = require("../middleware.js");
 const listingController = require("../controllers/listing.js");
 const Listing = require("../models/listing.js");
+const cloudinary = require("cloudinary").v2;
+
+cloudinary.config({
+  cloud_name: "dke2cbxto",
+  api_key: "559442842345682",
+  api_secret: "eGCi_vZXwRFFczmJnxWrZc9E6L0",
+});
+
 // const multer = require("multer");
-const { storage } = require("../cloudConfig.js");
+// const { storage } = require("../cloudConfig.js");
 // // const upload = multer({ dest: "uploads/" });
 // const upload = multer({ storage });
 
@@ -22,15 +30,19 @@ router.get("/new", isLoggedIn, listingController.renderNewForm);
 router.post(
   "/",
   isLoggedIn,
-  // upload.single("listing[image]"),
-  validateListing,
+  // validateListing,
   wrapAsync(listingController.createListing)
 );
 
-// router.post("/", upload.single("listing[image]"), (req, res) => {
+// router.post("/", async (req, res) => {
 //   // res.send(req.body);
-//   res.send(req.file);
-//   console.log("working");
+//   let file = req.files.image;
+//   const fileInfo = await cloudinary.uploader.upload(
+//     file.tempFilePath,
+//     (err, result) => {}
+//   );
+//   console.log(fileInfo.url);
+//   console.log(fileInfo.original_filename);
 // });
 
 // show ejs

@@ -20,6 +20,7 @@ const reviewRoute = require("./routes/review.js");
 const userRoute = require("./routes/user.js");
 // isLoggedIn middleware => is used for not to create listing befor login
 const isLoggedIn = require("./middleware.js");
+const fileUpload = require("express-fileupload");
 
 const path = require("path");
 app.set("views", path.join(__dirname, "views"));
@@ -30,11 +31,17 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(methodOverride("_method"));
 
+app.use(
+  fileUpload({
+    useTempFiles: true,
+  })
+);
+
 const dbUrl = process.env.ATLASDB_URL;
 // console.log(dbUrl);
 const mongoUrl = "mongodb://127.0.0.1:27017/wanderlust";
 async function main() {
-  await mongoose.connect(dbUrl);
+  await mongoose.connect(mongoUrl);
 }
 
 main()
