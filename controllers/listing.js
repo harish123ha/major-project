@@ -2,9 +2,9 @@ const Listing = require("../models/listing.js");
 const cloudinary = require("cloudinary").v2;
 
 cloudinary.config({
-  cloud_name: "dke2cbxto",
-  api_key: "559442842345682",
-  api_secret: "eGCi_vZXwRFFczmJnxWrZc9E6L0",
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.CLOUD_API_KEY,
+  api_secret: process.env.CLOUD_API_SECRET,
 });
 
 module.exports.index = async (req, res) => {
