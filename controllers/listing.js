@@ -1,6 +1,12 @@
 const Listing = require("../models/listing.js");
 const cloudinary = require("cloudinary").v2;
 
+cloudinary.config({
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.CLOUD_API_KEY,
+  api_secret: process.env.CLOUD_API_SECRET,
+});
+
 module.exports.index = async (req, res) => {
   const allData = await Listing.find({});
   res.render("listings/index.ejs", { allData });
