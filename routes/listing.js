@@ -7,7 +7,7 @@ const { validateListing } = require("../middleware.js");
 const listingController = require("../controllers/listing.js");
 const Listing = require("../models/listing.js");
 // const multer = require("multer");
-// const { storage } = require("../cloudConfig.js");
+const { storage } = require("../cloudConfig.js");
 // // const upload = multer({ dest: "uploads/" });
 // const upload = multer({ storage });
 
