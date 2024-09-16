@@ -16,7 +16,7 @@
           type="text"
           class="form-control"
           value="<%=listingEdit.title%>"
-          name="listing[title]"
+          name="title"
           required
         />
         <div class="invalid-feedback">Please enter title.</div>
@@ -27,7 +27,7 @@
         <label for="description" class="form-label zero">Description</label>
         <textarea
           class="form-control"
-          name="listing[description]"
+          name="description"
           placeholder="enter description"
           rows="3"
           required
@@ -44,7 +44,7 @@
           type="number"
           class="form-control"
           value="<%=listingEdit.price%>"
-          name="listing[price]"
+          name="price"
           required
         />
         <div class="invalid-feedback">Please enter valid price</div>
@@ -64,10 +64,10 @@
       </div>
 
       <!-- // START showing and editing FILE PDF,JPEG ETC -->
-      <label for="listing[image]" class="form-label zero">Upload image</label>
+      <label for="image" class="form-label zero">Upload image</label>
       <div class="input-group mb-3">
         <input
-          name="listing[image]"
+          name="image"
           type="file"
           class="form-control"
           value="<%=listingEdit.image.url%>"
@@ -88,7 +88,7 @@
               type="text"
               class="form-control"
               value="<%=listingEdit.location%>"
-              name="listing[location]"
+              name="location"
               required
             />
             <div class="invalid-feedback">Please provide a valid location</div>
@@ -102,7 +102,7 @@
               type="text"
               class="form-control"
               value="<%=listingEdit.country%>"
-              name="listing[country]"
+              name="country"
               required
             />
             <div class="invalid-feedback">Please provide a valid country</div>

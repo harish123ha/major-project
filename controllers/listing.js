@@ -1,12 +1,6 @@
 const Listing = require("../models/listing.js");
 const cloudinary = require("cloudinary").v2;
 
-cloudinary.config({
-  cloud_name: process.env.CLOUD_NAME,
-  api_key: process.env.CLOUD_API_KEY,
-  api_secret: process.env.CLOUD_API_SECRET,
-});
-
 module.exports.index = async (req, res) => {
   const allData = await Listing.find({});
   res.render("listings/index.ejs", { allData });
@@ -22,16 +16,9 @@ module.exports.createListing = async (req, res, next) => {
     file.tempFilePath,
     (err, result) => {}
   );
-  console.log(fileInfo.url);
-  console.log(fileInfo.original_filename);
-
   let url = fileInfo.url;
   let filename = fileInfo.original_filename;
-  console.log(url);
-  console.log(filename);
   const newListing = new Listing(req.body);
-  console.log(newListing);
-
   newListing.owner = req.user._id;
   newListing.image = { url, filename };
   await newListing.save();
@@ -69,11 +56,19 @@ module.exports.updateListing = async (req, res) => {
 
   const listingPatch = await Listing.findById(id);
   const listingUpdate = await Listing.findByIdAndUpdate(id, {
-    ...req.body.listing,
+    ...req.body,
+    // ...req.body.listing
   });
-  if (req.file) {
-    let url = req.file.path;
-    let filename = req.file.filename;
+  if (req.files) {
+    let file = req.files.image;
+    const fileInfo = await cloudinary.uploader.upload(
+      file.tempFilePath,
+      (err, result) => {}
+    );
+
+    let url = fileInfo.url;
+    let filename = fileInfo.original_filename;
+
     listingUpdate.image = { url, filename };
     await listingUpdate.save();
   }
