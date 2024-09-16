@@ -6,10 +6,10 @@ const { isOwner } = require("../middleware.js");
 const { validateListing } = require("../middleware.js");
 const listingController = require("../controllers/listing.js");
 const Listing = require("../models/listing.js");
-const multer = require("multer");
-const { storage } = require("../cloudConfig.js");
-// const upload = multer({ dest: "uploads/" });
-const upload = multer({ storage });
+// const multer = require("multer");
+// const { storage } = require("../cloudConfig.js");
+// // const upload = multer({ dest: "uploads/" });
+// const upload = multer({ storage });
 
 // ALL LISTINGS
 
@@ -22,7 +22,7 @@ router.get("/new", isLoggedIn, listingController.renderNewForm);
 router.post(
   "/",
   isLoggedIn,
-  upload.single("listing[image]"),
+  // upload.single("listing[image]"),
   validateListing,
   wrapAsync(listingController.createListing)
 );
@@ -50,7 +50,7 @@ router.patch(
   "/:id",
   isLoggedIn,
   isOwner,
-  upload.single("listing[image]"),
+  // upload.single("listing[image]"),
   validateListing,
   wrapAsync(listingController.updateListing)
 );
@@ -64,26 +64,7 @@ router.delete(
   wrapAsync(listingController.destroyListing)
 );
 
-//SEARCH ROUTE
-
-// router.get("/search", async (req, res) => {
-//   let { search } = req.query;
-
-//   let data = await Listing.find({
-//     $or: [
-//       { country: { $regex: search, $options: "i" } },
-//       { location: { $regex: search, $options: "i" } },
-//       { description: { $regex: search, $options: "i" } },
-//     ],
-//   });
-//   if (data == "") {
-//     req.flash("error", "The Desired Search data not found");
-//     return res.redirect("/listings");
-//   }
-
-//   req.flash("success", "data found");
-//   res.render("listings/index.ejs", { allData: data });
-// });
+// search bar
 
 router.get("/search", wrapAsync(listingController.searchBar));
 
