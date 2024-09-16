@@ -47,12 +47,31 @@
   }
 }
 
+@media(max-width:362px){
+  .search-style-input{
+    padding: .15rem .15rem;
+    width: 8rem;
+  }
+
+  .search-button{
+    padding: .12rem .10rem;
+    margin-bottom: 4px;
+    width: 3rem;
+    font-size: .85rem;
+  }
+}
+
 .nav-fix {
   position: sticky;
   top: 0;
   right: 0;
   left: 0;
   z-index: 1030;
+}
+
+.explore-hover:hover{
+  color: #FF385C;
+  font-weight: 600;
 }
 
 
@@ -93,8 +112,8 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-        <a class="nav-link" href="/listings">Home</a>
-        <a class="nav-link" href="/listings">All Listings</a>
+        
+        <a class="nav-link explore-hover" href="/listings">Explore</a>
         <a class="nav-link" href="/listings/new">Add new Listing</a>
       </div>
       <div class="navbar-brand navbar-nav search ms-auto">

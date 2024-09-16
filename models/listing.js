@@ -8,13 +8,8 @@ const listingSchema = new mongoose.Schema({
   },
   description: String,
   image: {
-    type: String,
-    default:
-      "https://a0.muscache.com/im/pictures/miso/Hosting-36123656/original/d76c75a4-751c-4016-a12f-b20ebfd9e8c1.jpeg?im_w=720",
-    set: (v) =>
-      v === ""
-        ? "https://a0.muscache.com/im/pictures/miso/Hosting-36123656/original/d76c75a4-751c-4016-a12f-b20ebfd9e8c1.jpeg?im_w=720"
-        : v,
+    url: String,
+    filename: String,
   },
   price: Number,
   location: String,

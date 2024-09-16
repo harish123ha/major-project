@@ -1,5 +1,11 @@
 <%- layout("layouts/boilerplate")%>
-<form method="POST" action="/listings" class="needs-validation" novalidate>
+<form
+  method="POST"
+  action="/listings"
+  class="needs-validation"
+  novalidate
+  enctype="multipart/form-data"
+>
   <div class="row">
     <div class="col-8 offset-2">
       <div class="mb-3">
@@ -38,19 +44,24 @@
           required
         />
         <div class="invalid-feedback">Please enter valid price</div>
-        <div class="valid-feedback">looks good</div>
       </div>
 
-      <div class="mb-3">
-        <label for="image" class="form-label zero">Image</label>
+      <!-- // START UPLOADING FILE PDF,JPEG ETC -->
+      <label for="listing[image]" class="form-label zero">Upload image</label>
+      <div class="input-group mb-3">
         <input
-          type=""
-          class="form-control"
-          placeholder="enter image url"
           name="listing[image]"
+          type="file"
+          class="form-control"
+          id="inputGroupFile04"
+          aria-describedby="inputGroupFileAddon04"
+          aria-label="Upload"
+          required
         />
+        <div class="invalid-feedback">Please upload image</div>
       </div>
-      <p class="text-danger">copy image url from internet and paste it here</p>
+
+      <!-- // CLOSE UPLOADING FILE PDF,JPEG ETC -->
 
       <div class="row">
         <div class="col-md-8">

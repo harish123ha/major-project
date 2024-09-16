@@ -5,6 +5,7 @@
   action="/listings/<%=listingEdit._id%>?_method=PATCH"
   class="needs-validation"
   novalidate
+  enctype="multipart/form-data"
 >
   <!-- <textarea name="title"><%=listingEdit.title%></textarea> -->
   <div class="row">
@@ -50,17 +51,34 @@
         <div class="valid-feedback">looks good</div>
       </div>
 
-      <div class="mb-3">
-        <label for="image" class="form-label zero">Image</label>
-        <input
-          type=""
-          class="form-control"
-          value="<%=listingEdit.image%>"
-          name="listing[image]"
-          required
+      <div class="mb-3 card listing-card card-style" style="width: 15rem">
+        <label for="price" class="form-label zero"
+          >Original Listing Image</label
+        >
+        <img
+          class="card-img-top"
+          src="<%=listingEdit.image.url%>"
+          alt="Card image cap"
+          style="height: 9rem"
         />
-        <div class="invalid-feedback">Please provide a valid url</div>
       </div>
+
+      <!-- // START showing and editing FILE PDF,JPEG ETC -->
+      <label for="listing[image]" class="form-label zero">Upload image</label>
+      <div class="input-group mb-3">
+        <input
+          name="listing[image]"
+          type="file"
+          class="form-control"
+          value="<%=listingEdit.image.url%>"
+          id="inputGroupFile04"
+          aria-describedby="inputGroupFileAddon04"
+          aria-label="Upload"
+        />
+        <div class="invalid-feedback">Please upload image</div>
+      </div>
+
+      <!-- // CLOSE showing and editing FILE PDF,JPEG ETC -->
 
       <div class="row">
         <div class="col-md-8">

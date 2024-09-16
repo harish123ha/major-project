@@ -21,8 +21,8 @@ const initdb = async () => {
   //   ...obj,
   //   owner: "66cc232a1cf0bcd7c341c4b7",
   // }));// not work
-  await Listing.insertMany(data);
-  console.log("inserting seccessful");
+  // await Listing.insertMany(data);
+  // console.log("inserting seccessful");
 };
 
 initdb();
